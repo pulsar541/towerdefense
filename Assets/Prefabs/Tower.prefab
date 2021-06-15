@@ -107,8 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4625a34df3087d445b5cfc1bd57e418b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 3559393261650006897, guid: e5606ad2e2047864bb8e6ea8c8274591,
-    type: 3}
   cannonImpulseForce: 9
 --- !u!1 &3447128114566360889
 GameObject:
@@ -213,6 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3447128115643791148}
   - component: {fileID: 3447128115643791151}
+  - component: {fileID: 799161683130192623}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -248,3 +247,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93a248039ccadb4cafda518103b2977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &799161683130192623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3447128115643791150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b4fb85b13c1f440a685c1a230c0120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mustDestroy: 0

@@ -31,7 +31,7 @@ public class TowerCannon : MonoBehaviour
         if(_sceneController.isRewind)
             return;
 
-        if(_msek > 1) {
+        if(_msek > 2) {
 			_msek = 0;
             if(_isShooting) {
                  Vector3 shootDir =  transform.TransformDirection(new Vector3(0, -1, 0));

@@ -26,8 +26,10 @@ public class Castle :  MonoBehaviour
             transform.position + new Vector3(0, transform.localScale.y / 2, 0),
             transform.localScale.y / 2);
         foreach (Collider hitCollider in hitColliders) {
-            if(hitCollider.name.IndexOf("Enemy") > -1) {
-                hitCollider.SendMessage("RemoveEnemy",  SendMessageOptions.DontRequireReceiver);
+            if(hitCollider.name.IndexOf("Enemy") > -1) { 
+
+                hitCollider.gameObject.GetComponent<SceneObject>().RemoveFromScene();
+                //hitCollider.SendMessage("RemoveEnemy",  SendMessageOptions.DontRequireReceiver);
                 //Debug.Log ("Попадание:" + hitCollider.name  );
             }
         }     

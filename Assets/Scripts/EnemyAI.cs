@@ -41,17 +41,17 @@ public class EnemyAI : MonoBehaviour
         set { }
     }
   
-    public void SetPosition(Vector3 position) {  
-        _charController.enabled = false;
-        _charController.transform.position = position;
-        _charController.enabled = true; 
-    }
+    // public void SetPosition(Vector3 position) {  
+    //     _charController.enabled = false;
+    //     _charController.transform.position = position;
+    //     _charController.enabled = true; 
+    // }
 
-    public void SetRotation(Vector3 rotation) {  
-        _charController.enabled = false;
-        _charController.transform.localEulerAngles = rotation;
-        _charController.enabled = true; 
-    }
+    // public void SetRotation(Vector3 rotation) {  
+    //     _charController.enabled = false;
+    //     _charController.transform.localEulerAngles = rotation;
+    //     _charController.enabled = true; 
+    // }
      // Start is called before the first frame update
   
     void Awake() {

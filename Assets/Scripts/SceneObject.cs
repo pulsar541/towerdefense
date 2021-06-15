@@ -25,6 +25,8 @@ public class SceneObject : MonoBehaviour
     void Start()
     {  
         _uid = SceneController.GetNewUID(); 
+         // _sceneController.sceneObjects.Add(this.gameObject); 
+         _sceneController.TryInsertSceneObject(this.gameObject);
     }
  
     public void SetTransformation(Vector3 position, Quaternion rotation) {

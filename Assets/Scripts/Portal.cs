@@ -19,7 +19,7 @@ public class Portal : MonoBehaviour
     }
     void Start()
     {
-        
+     //   _sceneController.sceneObjects.Add(this.gameObject);
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class Portal : MonoBehaviour
         }
         else {
             if(_msek > intervalSpawnSec ) {
-                _msek = -1; 
+                _msek = 0; 
                 _sceneController.SpawnEnemy(transform.position); 
                 intervalSpawnSec = Random.Range(1.0f, 4.0f);
             } 
