@@ -31,13 +31,13 @@ public class MathLib
     }
 
     
-    public static int nearestGameObjectIndex(List<GameObject> list, Vector3 sourcePos)
+    public static int nearestGameObjectIndex(List<GameObject> list, Vector3 sourcePos, string type)
     {  
         float tmpSquareDist = Mathf.Infinity; 
         int lisrSize  = list.Count; 
         int nearestCastleIndex = -1;
         for(int i = 0; i < lisrSize; i++) {
-            if(list[i] != null) {
+            if(list[i] != null && list[i].name.IndexOf(type) > -1) {
                 float squareDistance = MathLib.squareDist(list[i].transform.position, sourcePos);
                 if(squareDistance < tmpSquareDist) {
                     tmpSquareDist = squareDistance;  

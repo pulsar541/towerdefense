@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : TDMonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
-        _rigidBody = GetComponent<Rigidbody>();       
+        _rigidBody = GetComponent<Rigidbody>(); 
     }
 
     float damage = 50;
@@ -35,7 +35,8 @@ public class Projectile : MonoBehaviour
         } 
  
         if(transform.position.y < 0) {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            RemoveFromScene();
         }
     }
 

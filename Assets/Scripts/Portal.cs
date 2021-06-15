@@ -21,12 +21,18 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        if(_msek > intervalSpawnSec) {
-			_msek = 0; 
-            _sceneController.SpawnEnemy(transform.position); 
-            intervalSpawnSec = Random.Range(1.0f, 4.0f);
-		} 
-        _msek += Time.deltaTime;       
+        if(_sceneController.isRewind)  
+        {
+
+        }
+        else {
+            if(_msek > intervalSpawnSec) {
+                _msek = 0; 
+                _sceneController.SpawnEnemy(transform.position); 
+                intervalSpawnSec = Random.Range(1.0f, 4.0f);
+            } 
+            _msek += Time.deltaTime;       
+        }
     }
 
 }
