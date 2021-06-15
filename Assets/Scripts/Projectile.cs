@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : TDMonoBehaviour
+public class Projectile : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -12,14 +12,16 @@ public class Projectile : TDMonoBehaviour
     private Vector3 _movement;
 
 
+    private SceneObject _sceneObject;
+
     void Awake() {
         _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>(); 
         _rigidBody = GetComponent<Rigidbody>();  
+        _sceneObject = GetComponent<SceneObject>();
     }
 
     void Start()
-    {  
-        _uid = SceneController.GetNewUID();    
+    {    
     }
 
     float damage = 50;
@@ -38,31 +40,19 @@ public class Projectile : TDMonoBehaviour
         // Debug.Log("s ");
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, transform.localScale.y / 2 * 1.5f);
         foreach (Collider hitCollider in hitColliders) {
-            if(hitCollider.name.IndexOf("Floor") > -1) { 
-                //Destroy(gameObject);
-              //  RemoveProjectile();
+            if(hitCollider.name.IndexOf("Floor") > -1) {  
+                 _sceneObject.RemoveFromScene();
             } 
             if(hitCollider.name.IndexOf("Enemy") > -1) {  
-                hitCollider.gameObject.GetComponent<EnemyAI>().Health -= damage; 
-                //hitCollider.SendMessage("Destroy",
-                //        SendMessageOptions.DontRequireReceiver); 
-                //Destroy(gameObject);  
-               // RemoveProjectile();      
+                hitCollider.gameObject.GetComponent<EnemyAI>().Health -= damage;  
+                _sceneObject.RemoveFromScene();      
             } 
-           
-           //Debug.Log("ee " + hitCollider.name);
+            
         } 
  
-        if(transform.position.y < 0) {
-            //Destroy(gameObject);
-           // RemoveProjectile();
+        if(transform.position.y < 0) { 
+             _sceneObject.RemoveFromScene();
         }
     }
- 
-    public void RemoveProjectile() { 
-         //mustDestroy = true;
-         this.gameObject.SetActive(false);
-        _sceneController.DeleteGameObject(_uid);
-        Destroy(this.gameObject); 
-    }
+  
 }

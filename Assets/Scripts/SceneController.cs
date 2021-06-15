@@ -80,8 +80,8 @@ public class SceneController : MonoBehaviour
     public void DeleteGameObject(int uid) {
         int objectsSize = sceneObjects.Count; 
         for(int i = 0; i < objectsSize; i++) {
-            TDMonoBehaviour tdmb = sceneObjects[i].GetComponent<TDMonoBehaviour>();
-            if(sceneObjects[i] != null && tdmb != null && tdmb.UID == uid) {  
+            SceneObject so = sceneObjects[i].GetComponent<SceneObject>();
+            if(sceneObjects[i] != null && so != null && so.UID == uid) {  
                 sceneObjects.RemoveAt(i);
                 break;
             }
@@ -92,8 +92,8 @@ public class SceneController : MonoBehaviour
     public GameObject FindGameObject(int uid ) {
         int objectsSize = sceneObjects.Count; 
         for(int i = 0; i < objectsSize; i++) {
-            TDMonoBehaviour tdmb = sceneObjects[i].GetComponent<TDMonoBehaviour>();
-            if(sceneObjects[i] != null && tdmb != null && tdmb.UID == uid) { 
+            SceneObject so = sceneObjects[i].GetComponent<SceneObject>();
+            if(sceneObjects[i] != null && so != null && so.UID == uid) { 
                     return sceneObjects[i];
             }
         }   

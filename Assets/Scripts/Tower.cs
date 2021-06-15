@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : TDMonoBehaviour
+public class Tower : MonoBehaviour
 { 
 
     SceneController _sceneController;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Castle :  TDMonoBehaviour
+public class Castle :  MonoBehaviour
 {
     private SceneController _sceneController;
 
@@ -14,9 +14,7 @@ public class Castle :  TDMonoBehaviour
 
     void Start()
     {
-        m_Started = true;
-      
-        _uid = SceneController.GetNewUID();
+        m_Started = true; 
         _sceneController.sceneObjects.Add(this.gameObject);
     }
 
@@ -29,7 +27,7 @@ public class Castle :  TDMonoBehaviour
             transform.localScale.y / 2);
         foreach (Collider hitCollider in hitColliders) {
             if(hitCollider.name.IndexOf("Enemy") > -1) {
-                hitCollider.SendMessage("Destroy",  SendMessageOptions.DontRequireReceiver);
+                hitCollider.SendMessage("RemoveEnemy",  SendMessageOptions.DontRequireReceiver);
                 //Debug.Log ("Попадание:" + hitCollider.name  );
             }
         }     

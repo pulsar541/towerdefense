@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TDMonoBehaviour : MonoBehaviour
+public class SceneObject : MonoBehaviour
 { 
     protected int _uid;
     public int UID {
@@ -24,7 +24,7 @@ public class TDMonoBehaviour : MonoBehaviour
 
     void Start()
     {  
-      //  _uid = SceneController.GetNewUID(); 
+        _uid = SceneController.GetNewUID(); 
     }
  
     public void SetTransformation(Vector3 position, Quaternion rotation) {
@@ -61,11 +61,11 @@ public class TDMonoBehaviour : MonoBehaviour
         }  
     }
 
-    public void RemoveFromScene() { 
-         //mustDestroy = true;
+
+    public void RemoveFromScene() {  
          this.gameObject.SetActive(false);
         _sceneController.DeleteGameObject(_uid);
         Destroy(this.gameObject); 
     }
-  
+ 
 }

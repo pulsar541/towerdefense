@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : TDMonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
     
  
     private CharacterController _charController;
 
     private SceneController _sceneController;
+
+    private SceneObject _sceneObject;
 
     //TimeRewind _timeRewind;
 
@@ -53,6 +55,7 @@ public class EnemyAI : TDMonoBehaviour
      // Start is called before the first frame update
   
     void Awake() {
+        _sceneObject = GetComponent<SceneObject>();
         _charController = GetComponent<CharacterController>(); 
         _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();  
         
@@ -60,8 +63,7 @@ public class EnemyAI : TDMonoBehaviour
 
     void Start()
     {    
-        _moveDir = transform.TransformDirection(new Vector3(1,0,0) );  
-        _uid = SceneController.GetNewUID();     
+        _moveDir = transform.TransformDirection(new Vector3(1,0,0) );   
         hpLineTransform = this.gameObject.transform.GetChild(0);  
     }
 
@@ -75,7 +77,7 @@ public class EnemyAI : TDMonoBehaviour
         else {
 
             if(Health <= 0) {
-                RemoveEnemy();
+                _sceneObject.RemoveFromScene();
                 return;
             }
 
@@ -107,19 +109,5 @@ public class EnemyAI : TDMonoBehaviour
 
 
         }
-    }
-
-    public void RemoveEnemy() { 
-         //mustDestroy = true;
-         this.gameObject.SetActive(false);
-        _sceneController.DeleteGameObject(_uid);
-        Destroy(this.gameObject); 
-    }
- 
-    // public void SetTransformation(Vector3 position, Quaternion rotation) { 
-    //     _charController.enabled = false;
-    //     _charController.transform.position = position;
-    //     _charController.transform.rotation = rotation;
-    //     _charController.enabled = true;  
-    // }
+    } 
 }
