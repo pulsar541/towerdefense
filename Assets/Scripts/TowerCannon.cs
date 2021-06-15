@@ -19,7 +19,7 @@ public class TowerCannon : MonoBehaviour
     }
     
 
-    void Start()
+    void Awake()
     {
         GameObject ob = GameObject.Find("SceneController");
         _sceneController = (SceneController)ob.GetComponent<SceneController>();       

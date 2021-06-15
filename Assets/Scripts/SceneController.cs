@@ -51,8 +51,7 @@ public class SceneController : MonoBehaviour
     public void SpawnEnemy(Vector3 position) {
         _enemy = Instantiate(enemyPrefab) as GameObject; 
         Vector3 enemyPosition = position; 
-        _enemy.GetComponent<EnemyAI>().SetPosition(enemyPosition);  
-
+        _enemy.GetComponent<EnemyAI>().SetPosition(enemyPosition);   
         sceneObjects.Add(_enemy); 
  
     }
@@ -62,21 +61,21 @@ public class SceneController : MonoBehaviour
         _projectile = Instantiate(projectilePrefab) as GameObject; 
         _projectile.transform.position = position;
         Rigidbody rbProjectile = _projectile.gameObject.GetComponent<Rigidbody>(); 
-        rbProjectile.AddForce(dir.normalized * impulseForce, ForceMode.Impulse); 
-         
+        rbProjectile.AddForce(dir.normalized * impulseForce, ForceMode.Impulse);  
+         sceneObjects.Add(_projectile);  
     }
 
-    private void ObjectListCollector() {
-        int objectsSize = sceneObjects.Count; 
-        for(int i = 0; i < objectsSize; i++) {
-            if(sceneObjects[i] != null && sceneObjects[i].GetComponent<TDMonoBehaviour>().mustDestroy) {
-                sceneObjects[i].SetActive(false);
-                //sceneObjects.RemoveAt(i);
-                break;
-            }
-        }
+    // private void ObjectListCollector() {
+    //     int objectsSize = sceneObjects.Count; 
+    //     for(int i = 0; i < objectsSize; i++) {
+    //         if(sceneObjects[i] != null && sceneObjects[i].GetComponent<TDMonoBehaviour>().mustDestroy) {
+    //             sceneObjects[i].SetActive(false);
+    //             //sceneObjects.RemoveAt(i);
+    //             break;
+    //         }
+    //     }
  
-    } 
+    // } 
  
     public void DeleteGameObject(int uid) {
         int objectsSize = sceneObjects.Count; 

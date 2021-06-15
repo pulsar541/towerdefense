@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Castle : TDMonoBehaviour
+public class Castle :  TDMonoBehaviour
 {
     private SceneController _sceneController;
 
     bool m_Started;
+ 
+    void Awake() {
+        _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();  
+    }
 
-    // Start is called before the first frame update
     void Start()
     {
         m_Started = true;
-        _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();
+      
         _uid = SceneController.GetNewUID();
         _sceneController.sceneObjects.Add(this.gameObject);
     }

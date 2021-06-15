@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : TDMonoBehaviour
 { 
 
     SceneController _sceneController;
@@ -10,11 +10,12 @@ public class Tower : MonoBehaviour
     private int _nearestEnemyIndex = -1;
     private float _msek = 0; 
     GameObject towerCannon;
-    
-    void Start()
-    {
-        _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();
 
+    void Awake() {
+         _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>(); 
+    }
+    void Start()
+    { 
         Transform[] allChildren = GetComponentsInChildren<Transform>();
         foreach (Transform child in allChildren)
         {

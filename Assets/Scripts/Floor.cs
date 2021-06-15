@@ -6,11 +6,14 @@ public class Floor : MonoBehaviour
 {
     SceneController _sceneController; 
 
+
+    void Awake() {
+        _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();  
+    }
     // Start is called before the first frame update
     void Start()
     {
-        GameObject ob = GameObject.Find("SceneController");
-        _sceneController = (SceneController)ob.GetComponent<SceneController>();        
+ 
     }
 
     // Update is called once per frame

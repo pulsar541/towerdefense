@@ -20,7 +20,7 @@ public class TimeRewindController : MonoBehaviour
     Dictionary<int, TimeUnit> sceneLog = new Dictionary<int, TimeUnit>(); 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _sceneController = GetComponent<SceneController>();
     }
@@ -45,9 +45,8 @@ public class TimeRewindController : MonoBehaviour
             foreach(GameObject go in _sceneController.sceneObjects) {
                 if(go != null && go.activeSelf) {
                     LogUnit logUnit = new LogUnit(); 
-                    logUnit.uid = go.GetComponent<TDMonoBehaviour>().UID;
-                    logUnit.position = go.transform.position;
-                    logUnit.rotation = go.transform.rotation;
+                    logUnit.uid = go.GetComponent<TDMonoBehaviour>().UID; 
+                    go.GetComponent<TDMonoBehaviour>().GetTransformation(out logUnit.position, out logUnit.rotation);
                     logUnit.name = go.name; 
                     timeUnit.logUnits.Add(logUnit);
                 }
@@ -78,16 +77,24 @@ public class TimeRewindController : MonoBehaviour
             foreach(LogUnit logUnit in timeUnit.logUnits) {
                  GameObject go = _sceneController.FindGameObject(logUnit.uid);
                  if(go != null) { 
-                     TimeRewindBody trb =  go.GetComponent<TimeRewindBody>();
+                     TDMonoBehaviour trb =  go.GetComponent<TDMonoBehaviour>();
                      if(trb != null) { 
                         trb.SetTransformation(logUnit.position, logUnit.rotation);     
                      } 
 
-                 } else {    
-                        GameObject gameObject = Instantiate(enemyPrefab) as GameObject;   
-                        gameObject.GetComponent<TimeRewindBody>().SetTransformation(logUnit.position, logUnit.rotation);
-                        gameObject.GetComponent<TDMonoBehaviour>().UID = logUnit.uid;  
-                        _sceneController.sceneObjects.Add(gameObject);         
+                 } else {  
+                        if(logUnit.name.IndexOf("Enemy") > -1) { 
+                            GameObject gameObject = Instantiate(enemyPrefab) as GameObject;   
+                            gameObject.GetComponent<TDMonoBehaviour>().SetTransformation(logUnit.position, logUnit.rotation);
+                            gameObject.GetComponent<TDMonoBehaviour>().UID = logUnit.uid;  
+                            _sceneController.sceneObjects.Add(gameObject);
+                        } else if(logUnit.name.IndexOf("Projectile") > -1) {
+                             GameObject gameObject = Instantiate(projectilePrefab) as GameObject;   
+                            gameObject.GetComponent<TDMonoBehaviour>().SetTransformation(logUnit.position, logUnit.rotation);
+                            gameObject.GetComponent<TDMonoBehaviour>().UID = logUnit.uid;  
+                            _sceneController.sceneObjects.Add(gameObject);                           
+                        } else if(logUnit.name.IndexOf("Castle") > -1) {                           
+                        } 
                  }
             }
 

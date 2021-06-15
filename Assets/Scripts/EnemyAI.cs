@@ -38,15 +38,7 @@ public class EnemyAI : TDMonoBehaviour
         get { return _currentSpeed; } 
         set { }
     }
-
-    private Vector3 _startPosition = new Vector3(0, 0, 0);
-
- 
- 
-    public void SetStartPosition(Vector3 position) {
-        _startPosition = position;
-    }
-
+  
     public void SetPosition(Vector3 position) {  
         _charController.enabled = false;
         _charController.transform.position = position;
@@ -59,21 +51,17 @@ public class EnemyAI : TDMonoBehaviour
         _charController.enabled = true; 
     }
      // Start is called before the first frame update
- 
- 
+  
     void Awake() {
-       _charController = GetComponent<CharacterController>();        
+        _charController = GetComponent<CharacterController>(); 
+        _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();  
+        
     }
 
     void Start()
-    {    _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();
-        //_timeRewind = GameObject.Find("SceneController").GetComponent<TimeRewind>();
- 
-        _moveDir = transform.TransformDirection(new Vector3(1,0,0) );
-        //SetPosition(_startPosition); 
- 
-        _uid = SceneController.GetNewUID();    
-
+    {    
+        _moveDir = transform.TransformDirection(new Vector3(1,0,0) );  
+        _uid = SceneController.GetNewUID();     
         hpLineTransform = this.gameObject.transform.GetChild(0);  
     }
 

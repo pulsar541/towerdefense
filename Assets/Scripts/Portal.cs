@@ -12,10 +12,14 @@ public class Portal : MonoBehaviour
 
     Random rand = new Random();
     // Start is called before the first frame update
+
+    
+    void Awake() {
+        _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();  
+    }
     void Start()
     {
-        GameObject ob = GameObject.Find("SceneController");
-        _sceneController = (SceneController)ob.GetComponent<SceneController>(); 
+        
     }
 
     // Update is called once per frame
@@ -26,12 +30,14 @@ public class Portal : MonoBehaviour
 
         }
         else {
-            if(_msek > intervalSpawnSec) {
-                _msek = 0; 
+            if(_msek > intervalSpawnSec ) {
+                _msek = -1; 
                 _sceneController.SpawnEnemy(transform.position); 
                 intervalSpawnSec = Random.Range(1.0f, 4.0f);
             } 
-            _msek += Time.deltaTime;       
+
+           // if(_msek != -1)
+                _msek += Time.deltaTime;       
         }
     }
 
