@@ -6,17 +6,18 @@ public class Projectile : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private Rigidbody _rigidBody; 
+    //private Rigidbody _rigidBody; 
     private SceneController _sceneController;
     private CharacterController _characterController;
     private Vector3 _movement;
+
+    private Vector3 _gravity = new Vector3(0,-9.8f,0);
 
 
     private SceneObject _sceneObject;
 
     void Awake() {
-        _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>(); 
-        _rigidBody = GetComponent<Rigidbody>();  
+        _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();  
         _sceneObject = GetComponent<SceneObject>();
     }
 
@@ -26,18 +27,16 @@ public class Projectile : MonoBehaviour
 
     float damage = 50;
 
-    void Init(Vector3 movoment) {
-
+    public void Init(Vector3 position, Vector3 movoment) {
+        transform.position = position;
+        _movement = movoment;
     }
 
     // Update is called once per frame
     void Update()
-    { 
-        if(_sceneController.isPause) 
-            _rigidBody.isKinematic = true; 
-        else 
-            _rigidBody.isKinematic = false;
-        
+    {     
+        if(_sceneController.isPause)
+            return;
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, transform.localScale.y / 2 * 1.5f);
         foreach (Collider hitCollider in hitColliders) {
@@ -54,6 +53,9 @@ public class Projectile : MonoBehaviour
         if(transform.position.y < 0) { 
              _sceneObject.RemoveFromScene();
         }
+        _movement += _gravity * Time.deltaTime;
+
+        transform.position += _movement * Time.deltaTime;
     }
   
 }

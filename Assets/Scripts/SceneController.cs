@@ -37,45 +37,20 @@ public class SceneController : MonoBehaviour
 
     public void Resume() {
         isPause = false;
-    }
-
-
-    // Start is called before the first frame update 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-          
-        // if (Input.GetMouseButtonDown(1)) {
-        //     isRewind = !isRewind;
-        // }
-
-        if(_msek > 0.1) {
-            _msek = 0; 
- 
-        }
-  
-        
-        _msek += Time.deltaTime;
-    }
+    } 
 
     public void SpawnEnemy(Vector3 position) {
         _enemy = Instantiate(enemyPrefab) as GameObject; 
         Vector3 enemyPosition = position; 
-        _enemy.GetComponent<SceneObject>().SetTransformation(enemyPosition, Quaternion.identity);    
- 
+        _enemy.GetComponent<SceneObject>().SetTransformation(enemyPosition, Quaternion.identity);  
     }
 
 
     public void CreateProjectile(Vector3 position, Vector3 dir, float impulseForce) {
         _projectile = Instantiate(projectilePrefab) as GameObject; 
-        _projectile.transform.position = position;
-        Rigidbody rbProjectile = _projectile.gameObject.GetComponent<Rigidbody>(); 
-        rbProjectile.AddForce(dir.normalized * impulseForce, ForceMode.Impulse);  
+        _projectile.GetComponent<Projectile>().Init(position, dir * impulseForce);
+        //Rigidbody rbProjectile = _projectile.gameObject.GetComponent<Rigidbody>(); 
+       // rbProjectile.AddForce(dir.normalized * impulseForce, ForceMode.Impulse);  
     }
 
      
