@@ -7,6 +7,7 @@ public class LogUnit
     public int uid;
     public string name;
     public Vector3 position;
-    public Quaternion rotation;
+    public Quaternion rotation; 
+    public float health;
   
 }

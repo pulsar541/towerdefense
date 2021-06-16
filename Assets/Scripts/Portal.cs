@@ -22,7 +22,7 @@ public class Portal : MonoBehaviour
 
     void Update()
     {
-        if (_sceneController.isPause)
+        if (_sceneController.IsPaused())
             return;
 
         if (_msek > _intervalSpawnSec)

@@ -20,30 +20,20 @@ public class TimeRewindController : MonoBehaviour
 
     Dictionary<int, TimeUnit> sceneLog = new Dictionary<int, TimeUnit>();
 
-    // Start is called before the first frame update
     void Awake()
     {
         _sceneController = GetComponent<SceneController>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (_sceneController.IsPaused())
-        {
-            //  _gameTime --;
-            // RestoreScene(_gameTime);
-        }
-        else
-        {
-            RecordScene();
-            _gameTime++;
-        }
+            return;
+
+        RecordScene();
+        _gameTime++;
 
     }
-
-
-
 
     void RecordScene()
     {
@@ -58,6 +48,7 @@ public class TimeRewindController : MonoBehaviour
                     logUnit.uid = go.GetComponent<SceneObject>().UID;
                     go.GetComponent<SceneObject>().GetTransformation(out logUnit.position, out logUnit.rotation);
                     logUnit.name = go.name;
+                    logUnit.health = go.GetComponent<SceneObject>().Health;
                     timeUnit.logUnits.Add(logUnit);
                 }
             }
@@ -109,6 +100,7 @@ public class TimeRewindController : MonoBehaviour
                     if (trb != null)
                     {
                         trb.SetTransformation(logUnit.position, logUnit.rotation);
+                        trb.Health = logUnit.health;
                     }
 
                 }
@@ -119,6 +111,7 @@ public class TimeRewindController : MonoBehaviour
                         GameObject gameObject = Instantiate(enemyPrefab) as GameObject;
                         gameObject.GetComponent<SceneObject>().SetTransformation(logUnit.position, logUnit.rotation);
                         gameObject.GetComponent<SceneObject>().UID = logUnit.uid;
+                        gameObject.GetComponent<SceneObject>().Health = logUnit.health;
                         _sceneController.sceneObjects.Add(gameObject);
                     }
                     else if (logUnit.name.IndexOf("Projectile") > -1)
@@ -126,6 +119,7 @@ public class TimeRewindController : MonoBehaviour
                         GameObject gameObject = Instantiate(projectilePrefab) as GameObject;
                         gameObject.GetComponent<SceneObject>().SetTransformation(logUnit.position, logUnit.rotation);
                         gameObject.GetComponent<SceneObject>().UID = logUnit.uid;
+                        gameObject.GetComponent<SceneObject>().Health = logUnit.health;
                         _sceneController.sceneObjects.Add(gameObject);
                     }
                     else if (logUnit.name.IndexOf("Castle") > -1)

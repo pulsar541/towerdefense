@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
-{
-    // Start is called before the first frame update
-
-    //private Rigidbody _rigidBody; 
+{ 
     private SceneController _sceneController;
     private CharacterController _characterController;
     private Vector3 _movement; 
@@ -30,7 +27,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {     
-        if(_sceneController.isPause)
+        if(_sceneController.IsPaused())
             return;
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, transform.localScale.y / 2 * 1.5f);
@@ -39,7 +36,7 @@ public class Projectile : MonoBehaviour
                  _sceneObject.RemoveFromScene();
             } 
             if(hitCollider.name.IndexOf("Enemy") > -1) {  
-                hitCollider.gameObject.GetComponent<EnemyAI>().Health -= _damage;  
+                hitCollider.gameObject.GetComponent<SceneObject>().Health -= _damage;  
                 _sceneObject.RemoveFromScene();      
             } 
             

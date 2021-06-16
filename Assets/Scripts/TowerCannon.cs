@@ -32,7 +32,7 @@ public class TowerCannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_sceneController.isPause)
+        if(_sceneController.IsPaused())
             return;
 
         if(_msek > shootInterval) {

@@ -24,14 +24,7 @@ public class EnemyAI : MonoBehaviour
     private int _nearestCastleIndex = -1;
 
     private float _msek = 0;
-
-    private float _health;
-    public float Health
-    {
-        get { return _health; }
-        set { _health = value; }
-    }
-
+ 
     private Vector3 _moveDir;
     public Vector3 MoveDir
     {
@@ -58,57 +51,48 @@ public class EnemyAI : MonoBehaviour
     {
         _moveDir = transform.TransformDirection(new Vector3(1, 0, 0));
         hpLineTransform = this.gameObject.transform.GetChild(0);
-        _health = maxHealth;
+         _sceneObject.GetComponent<SceneObject>().Health = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        float health = _sceneObject.GetComponent<SceneObject>().Health;  
+        hpLineTransform.localScale = new Vector3(health * 0.01f, 0.05f, 0.1f);
 
-        if (_sceneController.isPause)
+        if (_sceneController.IsPaused())
+            return;
+
+      
+        if (health <= 0)
         {
-
+            _sceneObject.RemoveFromScene();
+            return;
         }
-        else
+
+        _nearestCastleIndex = MathLib.nearestGameObjectIndex(_sceneController.sceneObjects, transform.position, "Castle");
+
+        if (_msek > 0.25)
         {
+            Debug.Log("ni " + _nearestCastleIndex.ToString());
 
-            if (Health <= 0)
+            if (_nearestCastleIndex > -1)
             {
-                _sceneObject.RemoveFromScene();
-                return;
+                Vector3 targetPosition = _sceneController.sceneObjects[_nearestCastleIndex].transform.position;
+                targetPosition.y = transform.position.y;
+                transform.LookAt(targetPosition);
+                _currentSpeed = maxSpeed;
+
             }
-
-            _nearestCastleIndex = MathLib.nearestGameObjectIndex(_sceneController.sceneObjects, transform.position, "Castle");
-
-            if (_msek > 0.25)
-            {
-                Debug.Log("ni " + _nearestCastleIndex.ToString());
-
-                if (_nearestCastleIndex > -1)
-                {
-                    Vector3 targetPosition = _sceneController.sceneObjects[_nearestCastleIndex].transform.position;
-                    targetPosition.y = transform.position.y;
-                    transform.LookAt(targetPosition);
-                    _currentSpeed = maxSpeed;
-
-                }
-                _moveDir = transform.TransformDirection(new Vector3(0, 0, 1));
-            }
-
-            Vector3 movement = _moveDir * _currentSpeed * Time.deltaTime;
-            movement = Vector3.ClampMagnitude(movement, _currentSpeed);
-            _charController.Move(movement);
-
-            _msek += Time.deltaTime;
-
-
-            hpLineTransform.localScale = new Vector3(Health * 0.01f, 0.05f, 0.1f);
-            //var hpLineRenderer = hpLineTransform.GetComponent<Renderer>();  
-            // hpLineRenderer.material.SetColor("_Color", new Color(1.0f - Health * 0.01f , 0 , Health * 0.01f)); 
-            //hpLineRenderer.GetComponent<TextMesh>().GetComponent<Renderer>().material.SetColor("_Color", new Color(1 , 0 , 0)); 
-
-
-
+            _moveDir = transform.TransformDirection(new Vector3(0, 0, 1));
         }
+
+        Vector3 movement = _moveDir * _currentSpeed * Time.deltaTime;
+        movement = Vector3.ClampMagnitude(movement, _currentSpeed);
+        _charController.Move(movement);
+
+        _msek += Time.deltaTime;
+
+
     }
 }

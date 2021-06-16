@@ -10,6 +10,13 @@ public class SceneObject : MonoBehaviour
         get { return _uid; }
         set { _uid = value; }
     }
+ 
+    protected float _health;
+    public float Health
+    {
+        get { return _health; }
+        set { _health = value; }
+    }
 
     private CharacterController _charController;
     private SceneController _sceneController;

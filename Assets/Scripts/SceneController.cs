@@ -12,11 +12,7 @@ public class SceneController : MonoBehaviour
 
     public List<GameObject> sceneObjects = new List<GameObject>();
 
-    //Dictionary<int, GameObject> gameObjects = new Dictionary<int, GameObject>(); 
     float _msek = 0;
-
-    //TimeRewind _timeRewind;
-
     private static int _lastUID = 0;
 
     public static int GetNewUID()
@@ -24,9 +20,7 @@ public class SceneController : MonoBehaviour
         return _lastUID++;
     }
 
-    // public bool isRewind = false;
-
-    public bool isPause = false;
+    private bool isPause = false;
 
     public bool IsPaused()
     {
@@ -54,7 +48,7 @@ public class SceneController : MonoBehaviour
     public void CreateProjectile(Vector3 position, Vector3 dir, float impulseForce, float damage)
     {
         _projectile = Instantiate(projectilePrefab) as GameObject;
-        _projectile.GetComponent<Projectile>().Init(position, dir * impulseForce, damage); 
+        _projectile.GetComponent<Projectile>().Init(position, dir * impulseForce, damage);
     }
 
 
