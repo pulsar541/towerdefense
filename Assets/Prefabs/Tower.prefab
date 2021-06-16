@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3447128113969902515}
-  m_LocalRotation: {x: -0.8221984, y: -0, z: -0, w: 0.5692011}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3447128115643791148}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -110.611, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &3447128113969902479
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107,7 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4625a34df3087d445b5cfc1bd57e418b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonImpulseForce: 9
+  projectileDamage: 50
+  impulseForce: 10
+  angleFromHor: 20
+  shootInterval: 2
 --- !u!1 &3447128114566360889
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +170,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5dbc7cd3adcc0754b890ad11726b0cd7, type: 2}
+  - {fileID: 2100000, guid: da8414fb8b8ede34197d73a7604d96fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -247,6 +250,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93a248039ccadb4cafda518103b2977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cannonProjectileDamage: 50
+  shootInterval: 2
+  attackRadius: 12
+  cannonImpulseForce: 10
+  cannonAngleFromHor: 20
 --- !u!114 &799161683130192623
 MonoBehaviour:
   m_ObjectHideFlags: 0

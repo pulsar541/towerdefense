@@ -9,10 +9,10 @@ public class Projectile : MonoBehaviour
     //private Rigidbody _rigidBody; 
     private SceneController _sceneController;
     private CharacterController _characterController;
-    private Vector3 _movement;
-
+    private Vector3 _movement; 
     private Vector3 _gravity = new Vector3(0,-9.8f,0);
 
+    private float _damage =  1; 
 
     private SceneObject _sceneObject;
 
@@ -20,16 +20,11 @@ public class Projectile : MonoBehaviour
         _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();  
         _sceneObject = GetComponent<SceneObject>();
     }
-
-    void Start()
-    {    
-    }
-
-    float damage = 50;
-
-    public void Init(Vector3 position, Vector3 movoment) {
+ 
+    public void Init(Vector3 position, Vector3 movoment, float damage) {
         transform.position = position;
         _movement = movoment;
+        _damage = damage;
     }
 
     // Update is called once per frame
@@ -44,7 +39,7 @@ public class Projectile : MonoBehaviour
                  _sceneObject.RemoveFromScene();
             } 
             if(hitCollider.name.IndexOf("Enemy") > -1) {  
-                hitCollider.gameObject.GetComponent<EnemyAI>().Health -= damage;  
+                hitCollider.gameObject.GetComponent<EnemyAI>().Health -= _damage;  
                 _sceneObject.RemoveFromScene();      
             } 
             

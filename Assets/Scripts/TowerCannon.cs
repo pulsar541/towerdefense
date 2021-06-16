@@ -10,7 +10,11 @@ public class TowerCannon : MonoBehaviour
     // Start is called before the first frame update
 
     
-    public float cannonImpulseForce = 9.0f;
+    public float projectileDamage = 50;
+    public float impulseForce = 10; 
+    public float angleFromHor = 20;
+    public float shootInterval = 2; 
+
 
     private bool _isShooting = false;
     public bool Shooting {
@@ -31,13 +35,14 @@ public class TowerCannon : MonoBehaviour
         if(_sceneController.isPause)
             return;
 
-        if(_msek > 2) {
+        if(_msek > shootInterval) {
 			_msek = 0;
             if(_isShooting) {
                  Vector3 shootDir =  transform.TransformDirection(new Vector3(0, -1, 0));
                 _sceneController.CreateProjectile(transform.position + shootDir.normalized * transform.localScale.y / 2 + shootDir,
                                                   shootDir,
-                                                  cannonImpulseForce); 
+                                                  impulseForce,
+                                                  projectileDamage); 
             }
 		}
  
