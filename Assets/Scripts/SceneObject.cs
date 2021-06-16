@@ -9,8 +9,7 @@ public class SceneObject : MonoBehaviour
         get{return _uid;}
         set{_uid = value;}
     }
-
-    public bool mustDestroy = false;
+ 
     private CharacterController _charController; 
     private SceneController _sceneController; 
     private Rigidbody _rigidBody; 
@@ -24,8 +23,7 @@ public class SceneObject : MonoBehaviour
 
     void Start()
     {  
-        _uid = SceneController.GetNewUID(); 
-         // _sceneController.sceneObjects.Add(this.gameObject); 
+        _uid = SceneController.GetNewUID();   
          _sceneController.TryInsertSceneObject(this.gameObject);
     }
  

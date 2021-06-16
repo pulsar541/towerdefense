@@ -25,7 +25,7 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        if(_sceneController.isRewind)  
+        if(_sceneController.isPause)  
         {
 
         }

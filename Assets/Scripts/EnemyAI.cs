@@ -11,8 +11,7 @@ public class EnemyAI : MonoBehaviour
     private SceneController _sceneController;
 
     private SceneObject _sceneObject;
-
-    //TimeRewind _timeRewind;
+ 
 
     GameObject hpLine;
 
@@ -41,18 +40,6 @@ public class EnemyAI : MonoBehaviour
         set { }
     }
   
-    // public void SetPosition(Vector3 position) {  
-    //     _charController.enabled = false;
-    //     _charController.transform.position = position;
-    //     _charController.enabled = true; 
-    // }
-
-    // public void SetRotation(Vector3 rotation) {  
-    //     _charController.enabled = false;
-    //     _charController.transform.localEulerAngles = rotation;
-    //     _charController.enabled = true; 
-    // }
-     // Start is called before the first frame update
   
     void Awake() {
         _sceneObject = GetComponent<SceneObject>();
@@ -71,7 +58,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     { 
 
-        if(_sceneController.isRewind) {
+        if(_sceneController.isPause) {
             
         }
         else {

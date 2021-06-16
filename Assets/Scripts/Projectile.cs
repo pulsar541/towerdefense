@@ -33,11 +33,12 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        if(_sceneController.isRewind) {
-            _rigidBody.isKinematic = true;
-        }
-        else _rigidBody.isKinematic = false;
-        // Debug.Log("s ");
+        if(_sceneController.isPause) 
+            _rigidBody.isKinematic = true; 
+        else 
+            _rigidBody.isKinematic = false;
+        
+
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, transform.localScale.y / 2 * 1.5f);
         foreach (Collider hitCollider in hitColliders) {
             if(hitCollider.name.IndexOf("Floor") > -1) {  

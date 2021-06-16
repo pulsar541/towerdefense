@@ -23,7 +23,22 @@ public class SceneController : MonoBehaviour
         return _lastUID++;
     }
 
-    public bool isRewind = false;
+   // public bool isRewind = false;
+
+    public bool isPause = false;
+
+    public bool IsPaused() {
+        return isPause;
+    }
+
+    public void SetPause() {
+        isPause = true;
+    }
+
+    public void Resume() {
+        isPause = false;
+    }
+
 
     // Start is called before the first frame update 
     void Start()
@@ -35,9 +50,9 @@ public class SceneController : MonoBehaviour
     void Update()
     {
           
-        if (Input.GetMouseButtonDown(1)) {
-            isRewind = !isRewind;
-        }
+        // if (Input.GetMouseButtonDown(1)) {
+        //     isRewind = !isRewind;
+        // }
 
         if(_msek > 0.1) {
             _msek = 0; 

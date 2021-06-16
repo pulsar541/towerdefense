@@ -15,7 +15,7 @@ public class Castle :  MonoBehaviour
     void Start()
     {
         m_Started = true; 
-        _sceneController.sceneObjects.Add(this.gameObject);
+       // _sceneController.sceneObjects.Add(this.gameObject);
     }
 
     // Update is called once per frame

@@ -28,7 +28,7 @@ public class TowerCannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_sceneController.isRewind)
+        if(_sceneController.isPause)
             return;
 
         if(_msek > 2) {

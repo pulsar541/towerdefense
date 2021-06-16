@@ -28,9 +28,9 @@ public class TimeRewindController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     { 
-        if(_sceneController.isRewind) {
-            _gameTime --;
-            RestoreScene(_gameTime);
+        if(_sceneController.IsPaused()) {
+          //  _gameTime --;
+           // RestoreScene(_gameTime);
         }   
         else {
             RecordScene();
@@ -38,6 +38,9 @@ public class TimeRewindController : MonoBehaviour
         }     
  
     }
+
+    
+
 
     void RecordScene() {
         if(!sceneLog.ContainsKey(_gameTime)) {
@@ -54,11 +57,20 @@ public class TimeRewindController : MonoBehaviour
             sceneLog.Add(_gameTime, timeUnit);
         }    
     }
+
+
+    public void ClearHistory(int startGameTime, int endGameTime) {
+        for(int gt = endGameTime; gt >= startGameTime; gt--) {
+            sceneLog.Remove(gt);
+        }
+
+        _gameTime = startGameTime;
+    }
  
-    void RestoreScene(int _gameTime) {  
-         
-        if(sceneLog.ContainsKey(_gameTime)) { 
-            TimeUnit timeUnit = sceneLog[_gameTime];   
+    public void RestoreScene(int gameTime) {  
+        //_gameTime = gameTime;
+        if(sceneLog.ContainsKey(gameTime)) { 
+            TimeUnit timeUnit = sceneLog[gameTime];   
             int sceneObjSize = _sceneController.sceneObjects.Count;
  
             for(int k = 0 ; k< sceneObjSize ; k++) {          
@@ -79,7 +91,7 @@ public class TimeRewindController : MonoBehaviour
                  if(go != null) { 
                      SceneObject trb =  go.GetComponent<SceneObject>();
                      if(trb != null) { 
-                        trb.SetTransformation(logUnit.position, logUnit.rotation);     
+                          trb.SetTransformation(logUnit.position, logUnit.rotation);     
                      } 
 
                  } else {  
