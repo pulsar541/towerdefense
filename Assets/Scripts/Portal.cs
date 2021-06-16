@@ -15,19 +15,24 @@ public class Portal : MonoBehaviour
     void Awake() {
         _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();  
     } 
+
+    void Start() {
+        intervalSpawnSec = Random.Range(2.0f, 4.0f);
+    }
     // Update is called once per frame
     void Update()
     { 
         if(_sceneController.isPause)  
-            return;
-
+            return; 
     
         if(_msek > intervalSpawnSec ) {
             _msek = 0; 
-            _sceneController.SpawnEnemy(transform.position); 
-            intervalSpawnSec = Random.Range(1.0f, 4.0f);
+            Vector3 spawnEnemyPos =  transform.position + new Vector3(0, 3 ,0);
+            _sceneController.SpawnEnemy(spawnEnemyPos); 
+            intervalSpawnSec = Random.Range(2.0f, 4.0f);
         } 
-            _msek += Time.deltaTime;       
+        
+        _msek += Time.deltaTime;       
         
     }
 

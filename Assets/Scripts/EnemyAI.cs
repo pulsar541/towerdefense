@@ -70,7 +70,9 @@ public class EnemyAI : MonoBehaviour
 
             _nearestCastleIndex = MathLib.nearestGameObjectIndex(_sceneController.sceneObjects, transform.position, "Castle"); 
 
-            if(_msek > 0.25) {         
+            if(_msek > 0.25) {
+                Debug.Log("ni " + _nearestCastleIndex.ToString());
+
                 if(_nearestCastleIndex > -1) { 
                     Vector3 targetPosition = _sceneController.sceneObjects[_nearestCastleIndex].transform.position;
                     targetPosition.y = transform.position.y; 

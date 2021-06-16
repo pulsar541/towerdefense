@@ -68,12 +68,7 @@ public class UIController : MonoBehaviour
         _sceneController.Resume();
          _timeRewindController.RestoreScene(0);
          _timeRewindController.ClearHistory(0, (int)_slider.maxValue);
-    }
-
-
-    void FixedUpdate() {
- 
-    }
+    } 
 
     public void OnSliderRewindTime() {
         _timeRewindController.RestoreScene((int)_slider.value);

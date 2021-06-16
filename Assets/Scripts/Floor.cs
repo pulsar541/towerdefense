@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Floor : MonoBehaviour
 {
@@ -19,14 +20,14 @@ public class Floor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //     RaycastHit hit; 
-        //     if(Physics.Raycast(ray, out hit)) {
-        //         //Debug.Log("This hit at " + hit.point );
-        //         _sceneController.SpawnEnemy(hit.point);                
-        //     } 
-        // }
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit; 
+            if(Physics.Raycast(ray, out hit)) {
+                //Debug.Log("This hit at " + hit.point );
+                _sceneController.SpawnEnemy(hit.point);                
+            } 
+        }
     }
 }
