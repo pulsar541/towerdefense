@@ -113,11 +113,14 @@ public class TimeRewindController : MonoBehaviour
                     {
                         gameObject = Instantiate(_sceneController.castlePrefab) as GameObject;                        
                     }
-                    gameObject.GetComponent<SceneObject>().SetTransformation(logUnit.position, logUnit.rotation);
-                    gameObject.GetComponent<SceneObject>().UID = logUnit.uid;
-                    gameObject.GetComponent<SceneObject>().Health = logUnit.health;
-                    gameObject.GetComponent<SceneObject>().Movement = logUnit.movement;
-                    _sceneController.sceneObjects.Add(gameObject);    
+                    if(gameObject != null) 
+                    {
+                        gameObject.GetComponent<SceneObject>().SetTransformation(logUnit.position, logUnit.rotation);
+                        gameObject.GetComponent<SceneObject>().UID = logUnit.uid;
+                        gameObject.GetComponent<SceneObject>().Health = logUnit.health;
+                        gameObject.GetComponent<SceneObject>().Movement = logUnit.movement;
+                        _sceneController.sceneObjects.Add(gameObject);    
+                    }
                 }
             }
 
