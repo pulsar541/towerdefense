@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] public GameObject enemyPrefab;
     private GameObject _enemy;
 
-    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] public GameObject projectilePrefab;
     private GameObject _projectile;
+
+    [SerializeField] public GameObject castlePrefab;
 
     public List<GameObject> sceneObjects = new List<GameObject>();
 

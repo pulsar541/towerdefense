@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
-{ 
-
+{  
     SceneController _sceneController;
 
     private int _nearestEnemyIndex = -1;

@@ -3,19 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerCannon : MonoBehaviour
-{
-    
+{ 
     SceneController _sceneController; 
-    float _msek = 0;
-    // Start is called before the first frame update
-
-    
+    float _msek = 0; 
     public float projectileDamage = 50;
     public float impulseForce = 10; 
     public float angleFromHor = 20;
     public float shootInterval = 2; 
-
-
+ 
     private bool _isShooting = false;
     public bool Shooting {
         get{return _isShooting;}

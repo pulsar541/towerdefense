@@ -3,23 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
-{
-
-
-    private CharacterController _charController;
-
-    private SceneController _sceneController;
-
-    private SceneObject _sceneObject;
-
-
-    GameObject hpLine;
-
+{ 
+    private CharacterController _charController; 
+    private SceneController _sceneController; 
+    private SceneObject _sceneObject; 
+    
+    GameObject hpLine; 
     public Transform hpLineTransform;
-    public float maxSpeed = 2.0f;
-
-    public float maxHealth = 100;
-
+    public float maxSpeed = 2.0f; 
+    public float maxHealth = 100; 
     private float _currentSpeed = 0;
     private int _nearestCastleIndex = -1;
 
@@ -53,8 +45,7 @@ public class EnemyAI : MonoBehaviour
         hpLineTransform = this.gameObject.transform.GetChild(0);
          _sceneObject.GetComponent<SceneObject>().Health = maxHealth;
     }
-
-    // Update is called once per frame
+ 
     void Update()
     {   
         float health = _sceneObject.GetComponent<SceneObject>().Health;  

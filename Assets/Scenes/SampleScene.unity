@@ -1559,8 +1559,9 @@ MonoBehaviour:
     type: 3}
   projectilePrefab: {fileID: 3559393261650006897, guid: e5606ad2e2047864bb8e6ea8c8274591,
     type: 3}
+  castlePrefab: {fileID: 7599200117532615235, guid: f3760defa71103f44a8db5107ca36ac3,
+    type: 3}
   sceneObjects: []
-  isPause: 0
 --- !u!114 &1619911484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1573,10 +1574,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed677b89cbf53654693529fff7b7d58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8427384068959663505, guid: 8a2c187f44144cf4eb7f69ebd019655d,
-    type: 3}
-  projectilePrefab: {fileID: 3559393261650006897, guid: e5606ad2e2047864bb8e6ea8c8274591,
-    type: 3}
 --- !u!1001 &2048108409347136317
 PrefabInstance:
   m_ObjectHideFlags: 0

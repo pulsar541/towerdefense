@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class TimeRewindController : MonoBehaviour
 {
-
-    [SerializeField] private GameObject enemyPrefab;
-    private GameObject _enemy;
-
-    [SerializeField] private GameObject projectilePrefab;
-
     SceneController _sceneController;
-    private int _gameTime = 0;
-    //  List<LogUnit> log = new List<LogUnit>(); 
+    private int _gameTime = 0; 
     public int GameTime
     {
         get { return _gameTime; }
@@ -107,28 +100,24 @@ public class TimeRewindController : MonoBehaviour
 
                 }
                 else
-                {
+                {   GameObject gameObject = null;
                     if (logUnit.name.IndexOf("Enemy") > -1)
                     {
-                        GameObject gameObject = Instantiate(enemyPrefab) as GameObject;
-                        gameObject.GetComponent<SceneObject>().SetTransformation(logUnit.position, logUnit.rotation);
-                        gameObject.GetComponent<SceneObject>().UID = logUnit.uid;
-                        gameObject.GetComponent<SceneObject>().Health = logUnit.health;
-                        gameObject.GetComponent<SceneObject>().Movement = logUnit.movement;
-                        _sceneController.sceneObjects.Add(gameObject);
+                        gameObject = Instantiate(_sceneController.enemyPrefab) as GameObject; 
                     }
                     else if (logUnit.name.IndexOf("Projectile") > -1)
                     {
-                        GameObject gameObject = Instantiate(projectilePrefab) as GameObject;
-                        gameObject.GetComponent<SceneObject>().SetTransformation(logUnit.position, logUnit.rotation);
-                        gameObject.GetComponent<SceneObject>().UID = logUnit.uid;
-                        gameObject.GetComponent<SceneObject>().Health = logUnit.health;
-                        gameObject.GetComponent<SceneObject>().Movement = logUnit.movement;
-                        _sceneController.sceneObjects.Add(gameObject);
+                        gameObject = Instantiate(_sceneController.projectilePrefab) as GameObject; 
                     }
                     else if (logUnit.name.IndexOf("Castle") > -1)
                     {
+                        gameObject = Instantiate(_sceneController.castlePrefab) as GameObject;                        
                     }
+                    gameObject.GetComponent<SceneObject>().SetTransformation(logUnit.position, logUnit.rotation);
+                    gameObject.GetComponent<SceneObject>().UID = logUnit.uid;
+                    gameObject.GetComponent<SceneObject>().Health = logUnit.health;
+                    gameObject.GetComponent<SceneObject>().Movement = logUnit.movement;
+                    _sceneController.sceneObjects.Add(gameObject);    
                 }
             }
 

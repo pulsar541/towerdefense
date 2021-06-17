@@ -15,13 +15,14 @@ public class Castle : MonoBehaviour
 
     void Start()
     {
-        m_Started = true;
-        // _sceneController.sceneObjects.Add(this.gameObject);
+        m_Started = true; 
     }
-
-    // Update is called once per frame
+ 
     void Update()
     {
+        if (_sceneController.IsPaused())
+            return;
+
         Collider[] hitColliders = Physics.OverlapCapsule(
             transform.position + new Vector3(0, -transform.localScale.y / 2, 0),
             transform.position + new Vector3(0, transform.localScale.y / 2, 0),
@@ -29,18 +30,15 @@ public class Castle : MonoBehaviour
         foreach (Collider hitCollider in hitColliders)
         {
             if (hitCollider.name.IndexOf("Enemy") > -1)
-            {
-
-                hitCollider.gameObject.GetComponent<SceneObject>().RemoveFromScene();
-                //hitCollider.SendMessage("RemoveEnemy",  SendMessageOptions.DontRequireReceiver);
+            { 
+                hitCollider.gameObject.GetComponent<SceneObject>().RemoveFromScene(); 
                 //Debug.Log ("Попадание:" + hitCollider.name  );
             }
         }
     }
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-
+        Gizmos.color = Color.red; 
         if (m_Started)
             //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
             Gizmos.DrawWireCube(transform.position, transform.localScale);

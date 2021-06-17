@@ -6,17 +6,11 @@ using UnityEngine.EventSystems;
 public class Floor : MonoBehaviour
 {
     SceneController _sceneController;
-
-
+ 
     void Awake()
     {
         _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    }  
 
     // Update is called once per frame
     void Update()

@@ -8,8 +8,7 @@ public class Portal : MonoBehaviour
     float _intervalSpawnSec = 1;
     SceneController _sceneController;
     Random rand = new Random();
-
-
+ 
     void Awake()
     {
         _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();
