@@ -8,6 +8,6 @@ public class LogUnit
     public string name;
     public Vector3 position;
     public Quaternion rotation; 
-    public float health;
-  
+    public float health; 
+    public Vector3 movement;  
 }

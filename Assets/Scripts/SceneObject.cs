@@ -18,6 +18,13 @@ public class SceneObject : MonoBehaviour
         set { _health = value; }
     }
 
+    protected Vector3 _movement;
+    public Vector3 Movement
+    {
+        get { return _movement; }
+        set { _movement = value; }
+    }
+    
     private CharacterController _charController;
     private SceneController _sceneController;
     private Rigidbody _rigidBody;

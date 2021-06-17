@@ -5,8 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 { 
     private SceneController _sceneController;
-    private CharacterController _characterController;
-    private Vector3 _movement; 
+    private CharacterController _characterController; 
     private Vector3 _gravity = new Vector3(0,-9.8f,0);
 
     private float _damage =  1; 
@@ -20,7 +19,7 @@ public class Projectile : MonoBehaviour
  
     public void Init(Vector3 position, Vector3 movoment, float damage) {
         transform.position = position;
-        _movement = movoment;
+        _sceneObject.Movement = movoment;
         _damage = damage;
     }
 
@@ -45,9 +44,9 @@ public class Projectile : MonoBehaviour
         if(transform.position.y < 0) { 
              _sceneObject.RemoveFromScene();
         }
-        _movement += _gravity * Time.deltaTime;
 
-        transform.position += _movement * Time.deltaTime;
+        _sceneObject.Movement += _gravity * Time.deltaTime; 
+        transform.position += _sceneObject.Movement * Time.deltaTime;
     }
   
 }

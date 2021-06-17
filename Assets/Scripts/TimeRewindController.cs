@@ -49,6 +49,7 @@ public class TimeRewindController : MonoBehaviour
                     go.GetComponent<SceneObject>().GetTransformation(out logUnit.position, out logUnit.rotation);
                     logUnit.name = go.name;
                     logUnit.health = go.GetComponent<SceneObject>().Health;
+                    logUnit.movement = go.GetComponent<SceneObject>().Movement;
                     timeUnit.logUnits.Add(logUnit);
                 }
             }
@@ -101,6 +102,7 @@ public class TimeRewindController : MonoBehaviour
                     {
                         trb.SetTransformation(logUnit.position, logUnit.rotation);
                         trb.Health = logUnit.health;
+                        trb.Movement = logUnit.movement;
                     }
 
                 }
@@ -112,6 +114,7 @@ public class TimeRewindController : MonoBehaviour
                         gameObject.GetComponent<SceneObject>().SetTransformation(logUnit.position, logUnit.rotation);
                         gameObject.GetComponent<SceneObject>().UID = logUnit.uid;
                         gameObject.GetComponent<SceneObject>().Health = logUnit.health;
+                        gameObject.GetComponent<SceneObject>().Movement = logUnit.movement;
                         _sceneController.sceneObjects.Add(gameObject);
                     }
                     else if (logUnit.name.IndexOf("Projectile") > -1)
@@ -120,6 +123,7 @@ public class TimeRewindController : MonoBehaviour
                         gameObject.GetComponent<SceneObject>().SetTransformation(logUnit.position, logUnit.rotation);
                         gameObject.GetComponent<SceneObject>().UID = logUnit.uid;
                         gameObject.GetComponent<SceneObject>().Health = logUnit.health;
+                        gameObject.GetComponent<SceneObject>().Movement = logUnit.movement;
                         _sceneController.sceneObjects.Add(gameObject);
                     }
                     else if (logUnit.name.IndexOf("Castle") > -1)
