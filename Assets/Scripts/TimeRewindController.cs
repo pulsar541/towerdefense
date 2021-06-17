@@ -34,7 +34,7 @@ public class TimeRewindController : MonoBehaviour
 
     void RecordScene(int gameTime)
     {
-        if (!sceneLog.ContainsKey(_gameTime))
+        if (!sceneLog.ContainsKey(gameTime))
         {
             TimeUnit timeUnit = new TimeUnit();
             foreach (GameObject go in _sceneController.sceneObjects)
