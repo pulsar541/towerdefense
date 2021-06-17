@@ -18,17 +18,21 @@ public class TimeRewindController : MonoBehaviour
         _sceneController = GetComponent<SceneController>();
     }
 
+    void Start() {
+        RecordScene(0);
+    }
+
     void FixedUpdate()
     {
         if (_sceneController.IsPaused())
             return;
 
-        RecordScene();
+        RecordScene(_gameTime);
         _gameTime++;
 
     }
 
-    void RecordScene()
+    void RecordScene(int gameTime)
     {
         if (!sceneLog.ContainsKey(_gameTime))
         {
@@ -46,7 +50,7 @@ public class TimeRewindController : MonoBehaviour
                     timeUnit.logUnits.Add(logUnit);
                 }
             }
-            sceneLog.Add(_gameTime, timeUnit);
+            sceneLog.Add(gameTime, timeUnit);
         }
     }
 
